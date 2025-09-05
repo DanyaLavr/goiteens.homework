@@ -1,0 +1,26 @@
+.alert {
+  background-color: grey;
+  color: white;
+  padding: 12px 16px;
+  margin: 8px;
+  border-radius: 10px;
+}
+
+.alert.info {
+  background-color: orange;
+}
+
+.alert.error {
+  background-color: red;
+}
+
+.alert.success {
+  background-color: green;
+}
+
+.alert.isOutlined {
+  border-bottom: 3px solid black;
+}
+.alert.isElevated {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
