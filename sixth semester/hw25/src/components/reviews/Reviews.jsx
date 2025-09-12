@@ -19,15 +19,19 @@ export default function Reviews() {
   return (
     <div className="container">
       <h2>Reviews</h2>
-      <ul>
-        {reviews.map((elem) => (
-          <li key={elem.id}>
-            <h3>{elem.author}</h3>
-            <span>Rating:{elem.author_details.rating}</span>
-            <p>{elem.content}</p>
-          </li>
-        ))}
-      </ul>
+      {reviews && reviews.length > 0 ? (
+        <ul>
+          {reviews.map((elem) => (
+            <li key={elem.id}>
+              <h3>{elem.author}</h3>
+              <span>Rating: {elem.author_details.rating}</span>
+              <p>{elem.content}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Відгуків немає</p>
+      )}
     </div>
   );
 }
