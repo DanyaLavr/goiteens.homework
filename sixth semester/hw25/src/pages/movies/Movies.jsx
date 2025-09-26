@@ -4,6 +4,7 @@ import Movie from "../../components/movie/Movie";
 import styled from "styled-components";
 import Finder from "../../components/finder/Finder";
 import Loader from "../../components/loader/Loader";
+import { useLocation } from "react-router-dom";
 const List = styled.ul`
   display: grid;
   grid-template-columns: 300px 300px 300px;
@@ -13,7 +14,8 @@ const List = styled.ul`
 
 export default function Movies() {
   const { foundMovies } = useContext(MoviesContext);
-
+  const location = useLocation();
+  console.log(location);
   return (
     <main>
       <section>
@@ -28,6 +30,7 @@ export default function Movies() {
                     id={id}
                     poster_path={poster_path}
                     title={title}
+                    location={location}
                   />
                 ))
               ) : (

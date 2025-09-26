@@ -1,13 +1,14 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import { Suspense, lazy } from "react";
 import Cast from "./components/cast/Cast";
 import Reviews from "./components/reviews/Reviews";
-import MovieDetails from "./pages/movie-details/MovieDetails";
-import Movies from "./pages/movies/Movies";
-import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
-import { Suspense } from "react";
 import Loader from "./components/loader/Loader";
+
+const MovieDetails = lazy(() => import("./pages/movie-details/MovieDetails"));
+const Movies = lazy(() => import("./pages/movies/Movies"));
+const Home = lazy(() => import("./pages/home/Home"));
 
 function App() {
   return (

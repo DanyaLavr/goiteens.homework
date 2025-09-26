@@ -9,7 +9,7 @@ const Form = styled.form`
   justify-content: center;
   gap: 8px;
   margin: 0 auto;
-  width: 200px;
+  width: 240px;
   input,
   button {
     outline: none;

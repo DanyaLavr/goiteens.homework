@@ -12,6 +12,7 @@ const Link = styled(NavLink)`
 const NavMenu = styled.ul`
   list-style-type: none;
   display: flex;
+  font-size: 24px;
   justify-content: center;
   gap: 20px;
   margin: 0;

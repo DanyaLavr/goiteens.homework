@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieById } from "../../api/fetch-movies";
 import { useEffect, useState } from "react";
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w400";
@@ -6,7 +6,8 @@ const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w400";
 export default function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -19,7 +20,10 @@ export default function MovieDetails() {
     getMovie();
   }, [movieId]);
   return movie ? (
-    <main>
+    <main className="relative">
+      <button className="absolute left-20 top-5 px-4 py-2 rounded-2xl bg-stone-950 text-amber-50">
+        <Link to={location?.from || "/"}>Go Back</Link>
+      </button>
       <section>
         <div className="container">
           <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt="" />
