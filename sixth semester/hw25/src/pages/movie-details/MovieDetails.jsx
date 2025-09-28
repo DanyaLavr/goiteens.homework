@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieById } from "../../api/fetch-movies";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+import Loader from "../../components/loader/Loader";
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w400";
 
 export default function MovieDetails() {
@@ -46,6 +47,6 @@ export default function MovieDetails() {
       <Outlet />
     </main>
   ) : (
-    ""
+    <Loader />
   );
 }
