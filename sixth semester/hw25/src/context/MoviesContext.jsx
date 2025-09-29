@@ -6,6 +6,7 @@ export const MoviesProvider = ({ children }) => {
   const [foundMovies, setFoundMovies] = useState([]);
   const changeMovies = (arr) => setMovies(arr);
   const handleFindMovies = (arr) => setFoundMovies(arr);
+
   return (
     <MoviesContext.Provider
       value={{

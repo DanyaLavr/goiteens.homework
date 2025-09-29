@@ -1,7 +1,8 @@
-import { useContext, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import { MoviesContext } from "../../context/MoviesContext";
 import { findMovie } from "../../api/fetch-movies";
 import styled from "styled-components";
+import { useNavigate, useSearchParams } from "react-router-dom";
 const Form = styled.form`
   border-radius: 6px;
   border: 1px solid black;
@@ -18,14 +19,37 @@ const Form = styled.form`
 `;
 export default function Finder() {
   const { handleFindMovies } = useContext(MoviesContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const inputRef = useRef();
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    handleFindMovies(await findMovie(inputRef.current.value));
+  const checkFinder = async () => {
+    const q = searchParams.get("movieName");
+    console.log(q);
+    q ? handleFindMovies(await findMovie(q)) : navigate("/movies");
   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    checkFinder();
+    e.target.reset();
+  };
+
+  const onChange = () => {
+    const searchParamsObj = Object.fromEntries(searchParams);
+
+    setSearchParams({
+      ...searchParamsObj,
+      movieName: inputRef.current.value.toLowerCase().trim(),
+    });
+  };
+  useEffect(() => {
+    const getData = async () => {
+      checkFinder();
+    };
+    getData();
+  }, []);
   return (
     <Form action="" onSubmit={onSubmit}>
-      <input ref={inputRef} type="text" />
+      <input onChange={onChange} ref={inputRef} type="text" />
       <button>search</button>
     </Form>
   );

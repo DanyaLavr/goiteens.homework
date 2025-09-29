@@ -8,7 +8,6 @@ export default function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
-  console.log(location);
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -23,7 +22,7 @@ export default function MovieDetails() {
   return movie ? (
     <main className="relative">
       <button className="absolute left-20 top-5 px-4 py-2 rounded-2xl bg-stone-950 text-amber-50">
-        <Link to={location?.from || "/"}>Go Back</Link>
+        <Link to={location?.state.from || "/"}>Go Back</Link>
       </button>
       <section>
         <div className="container">

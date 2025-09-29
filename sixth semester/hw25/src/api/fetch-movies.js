@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const BASE_URL = "https://api.themoviedb.org/3/";
 const API_KEY = "dcc827019b68b7114ef1086f08eef13b";
 
@@ -9,9 +10,7 @@ export const getPopularMovies = async () => {
   return res.data.results;
 };
 export const findMovie = async (name) => {
-  const res = await axios.get(
-    `${BASE_URL}search/movie?${key}&query=${name.trim()}`
-  );
+  const res = await axios.get(`${BASE_URL}search/movie?${key}&query=${name}`);
   return res.data.results;
 };
 export const getMovieById = async (id) => {

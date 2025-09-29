@@ -13,11 +13,13 @@ const List = styled.ul`
 export default function Home() {
   const { movies, changeMovies } = useContext(MoviesContext);
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPopularMovies();
-      changeMovies(data);
-    };
-    fetchData();
+    if (!movies.length) {
+      const fetchData = async () => {
+        const data = await getPopularMovies();
+        changeMovies(data);
+      };
+      fetchData();
+    }
   }, []);
   return (
     <main>
