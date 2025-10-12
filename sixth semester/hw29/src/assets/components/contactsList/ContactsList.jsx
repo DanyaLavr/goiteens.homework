@@ -1,4 +1,8 @@
+import { useDispatch } from "react-redux";
+import { removeContact } from "../../../redux/actions";
+
 export default function Contactslist({ contacts, deleteContact }) {
+  const dispatch = useDispatch();
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
@@ -6,7 +10,7 @@ export default function Contactslist({ contacts, deleteContact }) {
           <p>
             {name} - {number}
           </p>
-          <button onClick={() => deleteContact(id)}> Delete</button>
+          <button onClick={() => dispatch(removeContact(id))}> Delete</button>
         </li>
       ))}
     </ul>

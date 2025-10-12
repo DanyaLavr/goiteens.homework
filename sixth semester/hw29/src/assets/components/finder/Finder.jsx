@@ -1,8 +1,15 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../../redux/actions";
 
 export default function Finder({ filterContacts, contacts }) {
   const [key, setKey] = useState("");
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    //!
+    dispatch(setFilter(e.target.value.trim()));
+  };
   useEffect(() => {
     filterContacts(key);
   }, [key]);

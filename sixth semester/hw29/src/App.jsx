@@ -5,21 +5,14 @@ import Form from "./assets/components/form/Form";
 import Contactslist from "./assets/components/contactsList/ContactsList";
 import Finder from "./assets/components/finder/Finder";
 import { useEffect } from "react";
+import { getContacts } from "./redux/selectors";
+import { useSelector } from "react-redux";
+import { appState } from "./redux/constants";
 
 function App() {
-  const [contacts, setContacts] = useState([
-    { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-    { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-    { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-    { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-  ]);
+  const [contacts, setContacts] = useState(appState.contacts);
   const [filteredContacts, setFilteredContacts] = useState(contacts);
 
-  const checkIsRegistered = ({ name, number }) => {
-    return contacts.some(
-      (elem) => elem.name === name || elem.number === number
-    );
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -46,6 +39,9 @@ function App() {
   useEffect(() => {
     filterContacts("");
   }, [contacts]);
+
+  console.log(appState);
+
   return (
     <div className="App">
       <h1>Phonebook</h1>
