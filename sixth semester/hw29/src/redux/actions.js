@@ -1,7 +1,7 @@
 export const addContact = ({ id, name, number }) => {
   return {
     type: "contacts/addContact",
-    payloud: {
+    payload: {
       id,
       name,
       number,
@@ -11,12 +11,12 @@ export const addContact = ({ id, name, number }) => {
 export const removeContact = (id) => {
   return {
     type: "contacts/removeContact",
-    payloud: id,
+    payload: id,
   };
 };
 export const setFilter = (val) => {
   return {
     type: "filter/setFilter",
-    payloud: val,
+    payload: val,
   };
 };

@@ -10,7 +10,8 @@ import { useSelector } from "react-redux";
 import { appState } from "./redux/constants";
 
 function App() {
-  const [contacts, setContacts] = useState(appState.contacts);
+  const contacts = useSelector(getContacts);
+  // const [contacts, setContacts] = useState(appState.contacts);
   const [filteredContacts, setFilteredContacts] = useState(contacts);
 
   const handleSubmit = (e) => {
@@ -39,8 +40,6 @@ function App() {
   useEffect(() => {
     filterContacts("");
   }, [contacts]);
-
-  console.log(appState);
 
   return (
     <div className="App">

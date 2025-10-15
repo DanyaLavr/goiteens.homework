@@ -1,30 +1,24 @@
 import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setFilter } from "../../../redux/actions";
+import { getFilter } from "../../../redux/selectors";
 
 export default function Finder({ filterContacts, contacts }) {
-  const [key, setKey] = useState("");
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
   const handleChange = (e) => {
-    //!
     dispatch(setFilter(e.target.value.trim()));
   };
   useEffect(() => {
-    filterContacts(key);
-  }, [key]);
+    filterContacts(filter);
+  }, [filter]);
   useEffect(() => {
-    setKey("");
+    dispatch(setFilter(""));
   }, [contacts]);
   return (
     <form className="">
       <label htmlFor="finder">Find contact by name</label>
-      <input
-        type="text"
-        name="finder"
-        value={key}
-        onChange={(e) => setKey(e.target.value.trim())}
-      />
+      <input type="text" name="finder" value={filter} onChange={handleChange} />
     </form>
   );
 }
