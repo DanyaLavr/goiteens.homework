@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { removeContact } from "../../../redux/actions";
 
-export default function Contactslist({ contacts, deleteContact }) {
+export default function Contactslist({ contacts }) {
   const dispatch = useDispatch();
   return (
     <ul>

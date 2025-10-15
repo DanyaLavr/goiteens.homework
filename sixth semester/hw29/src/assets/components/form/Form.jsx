@@ -1,11 +1,16 @@
 import { nanoid } from "nanoid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../../redux/actions";
-const checkIsRegistered = ({ name, number }) => {
-  return contacts.some((elem) => elem.name === name || elem.number === number);
-};
-export default function Form({ handleSubmit }) {
+import { getContacts } from "../../../redux/selectors";
+
+export default function Form() {
+  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
+  const checkIsRegistered = ({ name, number }) => {
+    return contacts.some(
+      (elem) => elem.name === name || elem.number === number
+    );
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -16,13 +21,10 @@ export default function Form({ handleSubmit }) {
     for (let [key, value] of formData.entries()) {
       contact[key] = value.trim();
     }
-
-    // if (checkIsRegistered(contact)) {
-    //   alert("Такий контакт вже існує");
-    //   return;
-    // }
+    if (checkIsRegistered(contact)) {
+      alert("You already have this contact");
+    }
     dispatch(addContact(contact));
-    // setContacts((prev) => [...prev, contact]);
     form.reset();
   };
   return (
@@ -30,14 +32,14 @@ export default function Form({ handleSubmit }) {
       <input
         type="text"
         name="name"
-        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
       <input
         type="tel"
         name="number"
-        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
