@@ -7,6 +7,10 @@ export default function Form() {
   const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
   const checkIsRegistered = ({ name, number }) => {
+    console.log(name, number);
+    console.log(
+      contacts.some((elem) => elem.name === name || elem.number === number)
+    );
     return contacts.some(
       (elem) => elem.name === name || elem.number === number
     );
@@ -23,6 +27,7 @@ export default function Form() {
     }
     if (checkIsRegistered(contact)) {
       alert("You already have this contact");
+      return;
     }
     dispatch(addContact(contact));
     form.reset();

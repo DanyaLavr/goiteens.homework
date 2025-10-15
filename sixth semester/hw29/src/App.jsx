@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <h1>Phonebook</h1>
-      <Form handleSubmit={handleSubmit} />
+      <Form />
       <h2>Contacts</h2>
       <Finder filterContacts={filterContacts} contacts={contacts} />
       <Contactslist contacts={filteredContacts} />
