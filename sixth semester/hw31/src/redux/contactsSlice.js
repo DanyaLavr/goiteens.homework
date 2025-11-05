@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CONTACTS } from "./constants";
+import { useStorage } from "../hooks/useStorage";
 
+const [_, getStorage] = useStorage("contacts");
 const contactsSlice = createSlice({
   name: "contacts",
-  initialState: CONTACTS,
+  initialState: getStorage() || CONTACTS,
   reducers: {
     addContact: {
       reducer(state, action) {
