@@ -1,6 +1,6 @@
 import "./App.css";
 import Form from "./assets/components/form/Form";
-import Contactslist from "./assets/components/contactsList/ContactsList";
+import ContactsList from "./assets/components/contactsList/ContactsList";
 import Finder from "./assets/components/finder/Finder";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -17,7 +17,7 @@ function App() {
       <Form />
       <h2>Contacts</h2>
       <Finder />
-      <Contactslist />
+      <ContactsList />
     </div>
   );
 }
